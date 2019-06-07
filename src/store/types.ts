@@ -9,4 +9,4 @@ export interface Event {
 
 export interface CalendarState {
     events: Event[]
-};
+}
