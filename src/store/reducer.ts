@@ -10,3 +10,4 @@ export function reducer(state = initialState, action) : CalendarState {
     
 };
 
+export default reducer;
