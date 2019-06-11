@@ -1,4 +1,5 @@
 export interface Event {
+    name: string,
     date: string,
     startTime: string,
     endTime: string,
