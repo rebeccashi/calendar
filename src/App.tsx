@@ -6,8 +6,10 @@ import * as styles from './App.css';
 const App: React.FC = () => {
 
   return (
-    <ListComponent className={styles.list}/>
+    <ListComponent/>
   );
 }
 
 export default App;
+
+// className={styles.list}
