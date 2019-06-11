@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.css';
 import EventList from './components/EventList';
+import ListComponent from './components/ListComponent';
+import * as styles from './App.css';
 
 const App: React.FC = () => {
+
   return (
-    <EventList/>
+    <ListComponent className={styles.list}/>
   );
 }
 
