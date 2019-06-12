@@ -4,33 +4,38 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import EventList from './EventList'
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
+import PropTypes from 'prop-types';
+import { FixedSizeList } from 'react-window';
+import Typography from '@material-ui/core/Typography'
 
 // const useStyles = makeStyles((theme) => ({
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
-      width: '100%',
-      maxWidth: 360,
+      maxWidth: '80%',
       backgroundColor: theme.palette.background.paper,
       textAlign: 'center',
+      height: 800,
+      fontSize: 20
     },
+    title: {
+        padding: 10
+    }
   }));
 
 export default function ListComponent() {
     const classes = useStyles();
 
     return (
-        <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                To-Do List
-                </ListSubheader>
-            }
-            className={classes.root}
-            >
-            <EventList/>
-        </List>
+            <List
+                component="nav"
+                aria-labelledby="nested-list-subheader"
+                className={classes.root}
+                >
+                <Typography variant="h5" className={classes.title}>
+                    To-Do List
+                </Typography>
+                <EventList/>
+            </List>
     )
 
     
