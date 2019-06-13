@@ -1,6 +1,5 @@
 import {
-    CalendarState,
-    Event 
+    CalendarState
 } from './types';
 
 const initialState : CalendarState = {
@@ -50,7 +49,8 @@ const initialState : CalendarState = {
             username: "Rebecca", 
             id: "Go the gym-2019/6/11" 
         }
-    ]   
+    ],
+    visibilityFilter: 'SHOW_ALL'   
 };
 
 export function calendarReducer(state = initialState, action:any) : CalendarState {

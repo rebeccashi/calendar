@@ -10,5 +10,6 @@ export interface Event {
 };
 
 export interface CalendarState {
-    events: Event[]
+    events: Event[],
+    visibilityFilter: string,
 }

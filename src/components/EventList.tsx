@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import EventItem from './EventItem'
-import {Event, CalendarState} from '../store/types'
+import {Event, CalendarState} from '../redux/types'
+import { getVisibleEvents } from '../redux/selector';
 
 interface ListProps {
-    events: Event[]
+    visibleEvents: Event[]
 };
   
 class EventList extends Component<ListProps> {
     render() {
-        const things = this.props.events.map((e : Event) => (
+        const list = this.props.visibleEvents.map((e : Event) => (
             <EventItem
                 id={e.name}
                 name = {e.name}
@@ -21,13 +22,13 @@ class EventList extends Component<ListProps> {
                 username={e.username}
             />
         ));
-        return things;
+        return list;
     }
 };
 
 const mapStateToProps = (state: CalendarState)  => {
     return {
-        events: state.events
+        visibleEvents: getVisibleEvents(state)
     }
 };
 
