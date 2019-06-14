@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect, ReactReduxContextValue} from 'react-redux';
+import {connect} from 'react-redux';
 import {CalendarState, ADD_EVENT, Event, addEventAction} from '../../redux/types';
 
 import Card from '@material-ui/core/Card';
@@ -11,7 +11,6 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 import {Theme} from '@material-ui/core'
 
 import moment from 'moment';
-import { EventEmitter } from 'events';
 
 const styles = (theme: Theme) => createStyles({
     root: {
@@ -88,7 +87,7 @@ class EventCard extends React.Component<EventCardProps, EventCardState>{
             notes: this.state.notes,
             id: this.state.username + ' ' + this.state.selectedDate + this.state.name
         };
-        console.log(moment(this.state.startTime, 'HH:mm'))
+
         if (!currentEvent.name) {
             alert("Event title is required.")
         } else if (!currentEvent.username) {

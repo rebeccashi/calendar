@@ -14,7 +14,34 @@ const initialState : CalendarState = {
             location: "gym", 
             username: "Rebecca", 
             id: "Rebecca-2019/6/11-Go the gym" 
-        }
+        },
+        {
+            name: "Go to the gym", 
+            date: moment(), 
+            startTime:moment(), 
+            endTime: moment(), 
+            location: "gym", 
+            username: "Rebecca", 
+            id: "Rebecca-2019/6/11-Go the gym" 
+        },
+        {
+            name: "Go to the gym", 
+            date: moment(), 
+            startTime:moment(), 
+            endTime: moment(), 
+            location: "gym", 
+            username: "Rebecca", 
+            id: "Rebecca-2019/6/11-Go the gym" 
+        },
+        {
+            name: "Go to the gym", 
+            date: moment(), 
+            startTime:moment(), 
+            endTime: moment(), 
+            location: "gym", 
+            username: "Rebecca", 
+            id: "Rebecca-2019/6/11-Go the gym" 
+        },
     ],
     visibilityFilter: 'SHOW_ALL'   
 };

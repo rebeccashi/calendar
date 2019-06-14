@@ -38,7 +38,6 @@ const EventItem = ({
 } :EventItemProps) => {
 
     const [checked, setChecked] = React.useState(-1);
-    //const [open, setOpen] = React.useState(false);
 
     const handleCheck = () => {
         setChecked((checked === -1) ? 0 : -1);
