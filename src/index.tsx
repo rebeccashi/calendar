@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';   //the compiler can't find react-redux
-import calendarReducer from './store/calendarReducer';
+import calendarReducer from './redux/calendarReducer';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
