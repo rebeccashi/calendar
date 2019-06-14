@@ -25,7 +25,7 @@ interface EventItemProps {
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
         width: '100%',
-        paddingLeft: '15%'
+        paddingLeft: '30%'
       },
     text: {
         paddingLeft: '15%'
@@ -37,6 +37,7 @@ const EventItem = ({
 } :EventItemProps) => {
 
     const [checked, setChecked] = React.useState(-1);
+    //const [open, setOpen] = React.useState(false);
 
     const handleCheck = () => {
         setChecked((checked === -1) ? 0 : -1);

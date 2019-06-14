@@ -1,12 +1,14 @@
 import {
-    CalendarState
+    CalendarState,
+    ADD_EVENT
 } from './types';
+import moment from 'moment';
 
 const initialState : CalendarState = {
     events: [
         {
             name: "Go to the gym", 
-            date: "2019/6/11", 
+            date: '2019-6-11', 
             startTime:"5pm", 
             endTime: "6pm", 
             location: "gym", 
@@ -15,7 +17,7 @@ const initialState : CalendarState = {
         },
         {
             name: "Go to the gym", 
-            date: "2019/6/11", 
+            date: '2019-6-11', 
             startTime:"5pm", 
             endTime: "6pm", 
             location: "gym", 
@@ -24,7 +26,7 @@ const initialState : CalendarState = {
         },
         {
             name: "Go to the gym", 
-            date: "2019/6/11", 
+            date: '2019-6-11',  
             startTime:"5pm", 
             endTime: "6pm", 
             location: "gym", 
@@ -33,7 +35,7 @@ const initialState : CalendarState = {
         },
         {
             name: "Go to the gym", 
-            date: "2019/6/11", 
+            date: '2019-6-11', 
             startTime:"5pm", 
             endTime: "6pm", 
             location: "gym", 
@@ -42,7 +44,7 @@ const initialState : CalendarState = {
         },
         {
             name: "Go to the gym", 
-            date: "2019/6/11", 
+            date: '2019-6-11', 
             startTime:"5pm", 
             endTime: "6pm", 
             location: "gym", 
@@ -53,7 +55,15 @@ const initialState : CalendarState = {
     visibilityFilter: 'SHOW_ALL'   
 };
 
-export function calendarReducer(state = initialState, action:any) : CalendarState {
+export function calendarReducer(state = initialState, action: any) : CalendarState {
+    switch(action.type) {
+        case ADD_EVENT:
+            return {
+                ...state,
+                events: [...state.events, action.payload],
+            }
+    }
+
     return state;
 };
 
