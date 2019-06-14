@@ -1,10 +1,10 @@
-import moment from 'moment';
+import moment, { MomentBuiltinFormat } from 'moment';
 
 export interface Event {
     name: string,
-    date: string,
-    startTime: string,
-    endTime: string,
+    date: moment.Moment,
+    startTime: moment.Moment,
+    endTime: moment.Moment,
     location?: string,
     notes?: string,
     username: string,   //not alterable

@@ -8,48 +8,12 @@ const initialState : CalendarState = {
     events: [
         {
             name: "Go to the gym", 
-            date: '2019-6-11', 
-            startTime:"5pm", 
-            endTime: "6pm", 
+            date: moment(), 
+            startTime:moment(), 
+            endTime: moment(), 
             location: "gym", 
             username: "Rebecca", 
-            id: "Go the gym-2019/6/11" 
-        },
-        {
-            name: "Go to the gym", 
-            date: '2019-6-11', 
-            startTime:"5pm", 
-            endTime: "6pm", 
-            location: "gym", 
-            username: "Rebecca", 
-            id: "Go the gym-2019/6/11" 
-        },
-        {
-            name: "Go to the gym", 
-            date: '2019-6-11',  
-            startTime:"5pm", 
-            endTime: "6pm", 
-            location: "gym", 
-            username: "Rebecca", 
-            id: "Go the gym-2019/6/11" 
-        },
-        {
-            name: "Go to the gym", 
-            date: '2019-6-11', 
-            startTime:"5pm", 
-            endTime: "6pm", 
-            location: "gym", 
-            username: "Rebecca", 
-            id: "Go the gym-2019/6/11" 
-        },
-        {
-            name: "Go to the gym", 
-            date: '2019-6-11', 
-            startTime:"5pm", 
-            endTime: "6pm", 
-            location: "gym", 
-            username: "Rebecca", 
-            id: "Go the gym-2019/6/11" 
+            id: "Rebecca-2019/6/11-Go the gym" 
         }
     ],
     visibilityFilter: 'SHOW_ALL'   

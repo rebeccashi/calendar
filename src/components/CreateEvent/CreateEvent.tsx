@@ -34,7 +34,6 @@ const CreateEvent = () => {
         const [open, setOpen] = React.useState<boolean>(false);
 
         const handleClick = (newPlacement : PopperPlacementType) =>  (event : MouseEvent) => {
-            console.log(newPlacement);
             const {currentTarget} = event;
             setAnchorEl(currentTarget);
             setOpen(placement !== newPlacement || !open);

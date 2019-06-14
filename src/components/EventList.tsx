@@ -13,9 +13,9 @@ class EventList extends Component<ListProps> {
             <EventItem
                 id={e.name}
                 name = {e.name}
-                date={e.date}
-                startTime={e.startTime}
-                endTime={e.endTime}
+                date={e.date.format('MM-DD-YYYY')}
+                startTime={e.startTime.format('hh:mm A')}
+                endTime={e.endTime.format('hh:mm A')}
                 location={e.location}
                 notes={e.notes}
                 username={e.username}

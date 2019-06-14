@@ -74,27 +74,33 @@ class EventCard extends React.Component<EventCardProps, EventCardState>{
         this.dateChangeHandler = this.dateChangeHandler.bind(this);
         this.startTimeChangeHandler = this.startTimeChangeHandler.bind(this);
         this.endTimeChangeHandler = this.endTimeChangeHandler.bind(this);
+        this.compareTo = this.compareTo.bind(this);
     };
 
     addHandler() {
         let currentEvent : Event = {
             name: this.state.name,
             username: this.state.username,
-            date: this.state.selectedDate, //needs to be fixed
-            startTime: this.state.startTime,
-            endTime: this.state.endTime,
+            date: moment(this.state.selectedDate, 'YYYY-MM-DD'), //needs to be fixed
+            startTime: moment(this.state.startTime, 'HH:mm'),
+            endTime: moment(this.state.endTime, 'HH:mm'),
             location: this.state.location,
             notes: this.state.notes,
-            id: this.state.username + ' ' + this.state.name
+            id: this.state.username + ' ' + this.state.selectedDate + this.state.name
         };
+        console.log(moment(this.state.startTime, 'HH:mm'))
         if (!currentEvent.name) {
             alert("Event title is required.")
         } else if (!currentEvent.username) {
-            alert('Username is required')
+            alert('Username is required.')
+        } else if (!currentEvent.date) {
+            alert('Date is required.')
         } else if (!currentEvent.startTime) {
-            alert('Event start time is required')
+            alert('Event start time is required.')
         } else if (!currentEvent.endTime) {
-            alert('Event end time is required')
+            alert('Event end time is required.')
+        } else if (this.compareTo(this.state.startTime,this.state.endTime) === false ) {
+            alert('Event end time has to be later than start time.')
         } else {
             this.props.onAddEvent(currentEvent);
             this.props.close();
@@ -118,9 +124,13 @@ class EventCard extends React.Component<EventCardProps, EventCardState>{
         }
     }
 
-    render() {
+    compareTo(startTime: string, endTime:string) {
+        const start = parseInt(startTime.slice(0, 2) + startTime.slice(3, 5), 10);
+        const end = parseInt(endTime.slice(0, 2) + startTime.slice(3, 5), 10);
+        return start < end;
+    }
 
-        console.log(moment().format("MM-DD-YYYY"))
+    render() {
 
         const { classes } = this.props;
 
@@ -167,7 +177,7 @@ class EventCard extends React.Component<EventCardProps, EventCardState>{
                         type="time"
                         defaultValue={moment().format("HH:mm")}
                         className={classes.time}
-                        onChange={(e) => this.startTimeChangeHandler}
+                        onChange={(e) => this.startTimeChangeHandler(e)}
                         InputLabelProps={{
                         shrink: true,
                         }}
@@ -182,7 +192,7 @@ class EventCard extends React.Component<EventCardProps, EventCardState>{
                         type="time"
                         defaultValue={moment().add(1, "h").format("HH:mm")}
                         className={classes.time}
-                        onChange={(e) => this.endTimeChangeHandler}
+                        onChange={(e) => this.endTimeChangeHandler(e)}
                         InputLabelProps={{
                         shrink: true,
                         }}
@@ -236,27 +246,3 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(EventCard));
-
-/*
-<TextField
-                        id="datetime-local"
-                        label="Start Time"
-                        type="datetime-local"
-                        defaultValue="2017-05-24T10:30"
-                        className={this.props.classes.time}
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                    />
-
-                    <TextField
-                        id="datetime-local"
-                        label="End Time"
-                        type="datetime-local"
-                        defaultValue="2017-05-24T10:30"
-                        className={this.props.classes.time}
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                    />
-                    */
