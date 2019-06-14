@@ -10,7 +10,7 @@ interface ListProps {
   
 class EventList extends Component<ListProps> {
     render() {
-        const list = this.props.visibleEvents.map((e : Event) => (
+        const eventList = this.props.visibleEvents.map((e : Event) => (
             <EventItem
                 id={e.name}
                 name = {e.name}
@@ -22,7 +22,7 @@ class EventList extends Component<ListProps> {
                 username={e.username}
             />
         ));
-        return list;
+        return eventList;
     }
 };
 
