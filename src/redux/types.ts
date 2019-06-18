@@ -1,8 +1,10 @@
+import moment, { MomentBuiltinFormat } from 'moment';
+
 export interface Event {
     name: string,
-    date: string,
-    startTime: string,
-    endTime: string,
+    date: moment.Moment,
+    startTime: moment.Moment,
+    endTime: moment.Moment,
     location?: string,
     notes?: string,
     username: string,   //not alterable
@@ -12,4 +14,11 @@ export interface Event {
 export interface CalendarState {
     events: Event[],
     visibilityFilter: string,
+}
+
+export const ADD_EVENT = 'ADD_EVENT';
+
+export interface addEventAction {
+    type: typeof ADD_EVENT;
+    payload: Event;
 }

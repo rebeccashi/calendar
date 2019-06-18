@@ -2,13 +2,9 @@ import React from 'react';
 import {Theme} from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import EventList from './EventList'
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
-import PropTypes from 'prop-types';
-import { FixedSizeList } from 'react-window';
 import Typography from '@material-ui/core/Typography'
 
-// const useStyles = makeStyles((theme) => ({
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
       maxWidth: '80%',

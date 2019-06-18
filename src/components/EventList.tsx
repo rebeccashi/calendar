@@ -2,33 +2,32 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import EventItem from './EventItem'
 import {Event, CalendarState} from '../redux/types'
-import { getVisibleEvents } from '../redux/selector';
 
 interface ListProps {
-    visibleEvents: Event[]
+    events: Event[]
 };
   
 class EventList extends Component<ListProps> {
     render() {
-        const eventList = this.props.visibleEvents.map((e : Event) => (
+        const things = this.props.events.map((e : Event) => (
             <EventItem
                 id={e.name}
                 name = {e.name}
-                date={e.date}
-                startTime={e.startTime}
-                endTime={e.endTime}
+                date={e.date.format('MM-DD-YYYY')}
+                startTime={e.startTime.format('hh:mm A')}
+                endTime={e.endTime.format('hh:mm A')}
                 location={e.location}
                 notes={e.notes}
                 username={e.username}
             />
         ));
-        return eventList;
+        return things;
     }
 };
 
 const mapStateToProps = (state: CalendarState)  => {
     return {
-        visibleEvents: getVisibleEvents(state)
+        events: state.events
     }
 };
 
