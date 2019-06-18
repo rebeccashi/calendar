@@ -1,7 +1,7 @@
 import {
     CalendarState,
     ADD_EVENT
-} from './types';
+} from './calendarTypes';
 import moment from 'moment';
 
 const initialState : CalendarState = {
@@ -42,8 +42,7 @@ const initialState : CalendarState = {
             username: "Rebecca", 
             id: "Rebecca-2019/6/11-Go the gym" 
         },
-    ],
-    visibilityFilter: 'SHOW_ALL'   
+    ]
 };
 
 export function calendarReducer(state = initialState, action: any) : CalendarState {

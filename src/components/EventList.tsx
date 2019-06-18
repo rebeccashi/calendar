@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import EventItem from './EventItem'
-import {Event, CalendarState} from '../redux/types'
+import {Event, CalendarState} from '../redux/calendar/calendarTypes'
+import { getDisplayEvents } from '../redux/selector';
+import { RootState } from '..';
 
 interface ListProps {
     events: Event[]
@@ -25,9 +27,9 @@ class EventList extends Component<ListProps> {
     }
 };
 
-const mapStateToProps = (state: CalendarState)  => {
+const mapStateToProps = (state : RootState)  => {
     return {
-        events: state.events
+        events: getDisplayEvents(state)
     }
 };
 

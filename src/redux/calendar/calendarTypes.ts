@@ -12,8 +12,7 @@ export interface Event {
 };
 
 export interface CalendarState {
-    events: Event[],
-    visibilityFilter: string,
+    events: Event[]
 }
 
 export const ADD_EVENT = 'ADD_EVENT';
