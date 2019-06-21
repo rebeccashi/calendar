@@ -1,14 +1,22 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';   //the compiler can't find react-redux
-import calendarReducer from './redux/calendarReducer';
+import {calendarReducer} from './redux/calendar/calendarReducer';
+import {filterReducer} from './redux/filter/filterReducer';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './index.d.ts'
 
-const store = createStore(calendarReducer);
+const rootReducer = combineReducers({
+    calendar: calendarReducer,
+    filter: filterReducer
+})
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+const store = createStore(rootReducer);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
