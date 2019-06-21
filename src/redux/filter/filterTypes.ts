@@ -1,4 +1,5 @@
 import moment from 'moment';
+import actionCreatorFactory from 'typescript-fsa';
 
 export interface FilterObject {
     filterOption: string,
@@ -14,13 +15,6 @@ export interface FilterState {
 export const LATEST = 'LATEST';
 export const DATE = 'DATE';
 
-interface latestAction {
-    type: typeof LATEST
-}
-
-interface dateAction {
-    type: typeof DATE,
-    payload: FilterObject
-}
-
-export type FilterActionTypes = latestAction | dateAction;
+const actionCreator = actionCreatorFactory();
+export const latestAction = actionCreator<{}>(LATEST);
+export const dateAction = actionCreator<FilterObject>(DATE);
