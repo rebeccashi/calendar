@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 const EventItem = ({
     name, date, startTime, endTime, location, notes, username, id, index, style
 } :EventItemProps) => {
-
     const [checked, setChecked] = React.useState(-1);
 
     const handleCheck = () => {

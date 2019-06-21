@@ -1,20 +1,26 @@
+import moment from 'moment';
+
+export interface FilterObject {
+    filterOption: string,
+    filterDate: moment.Moment,
+}
+
 export interface FilterState {
-    displayFilter: string,
+    display: string,
+    latest?:boolean,
+    filterObject?: FilterObject | null
 }
 
-export const SORT = 'SORT';
-export const CHANGE_DISPLAY = 'CHANGE_DISPLAY';
+export const LATEST = 'LATEST';
+export const DATE = 'DATE';
 
-export interface changeFilterAction {
-    type: typeof CHANGE_DISPLAY
+interface latestAction {
+    type: typeof LATEST
 }
 
-interface sortAction {
-    type: typeof SORT;
+interface dateAction {
+    type: typeof DATE,
+    payload: FilterObject
 }
 
-interface changeDisplayAction {
-    type: typeof CHANGE_DISPLAY
-} 
-
-export type FilterActionTypes = sortAction | changeDisplayAction;
+export type FilterActionTypes = latestAction | dateAction;

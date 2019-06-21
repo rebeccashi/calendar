@@ -10,6 +10,7 @@ interface ListProps {
 };
   
 class EventList extends Component<ListProps> {
+
     render() {
         const things = this.props.events.map((e : Event) => (
             <EventItem

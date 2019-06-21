@@ -18,6 +18,6 @@ export interface CalendarState {
 export const ADD_EVENT = 'ADD_EVENT';
 
 export interface addEventAction {
-    type: typeof ADD_EVENT;
-    payload: Event;
+    type: typeof ADD_EVENT,
+    payload: Event
 }

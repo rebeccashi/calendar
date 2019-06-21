@@ -1,20 +1,28 @@
 import React from 'react';
+import {render} from 'react-dom';
 import {connect} from 'react-redux';
 import {withStyles, createStyles} from '@material-ui/core/styles';
-import {Theme} from '@material-ui/core';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
+import {FilterState, FilterActionTypes} from '../../redux/filter/filterTypes'
+import moment from 'moment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { tsConstructorType } from '@babel/types';
-import {FilterState, SORT, CHANGE_DISPLAY} from '../../redux/filter/filterTypes'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import {
+    Theme, 
+    ExpansionPanel, 
+    ExpansionPanelSummary, 
+    ExpansionPanelDetails, 
+    Typography,
+    Chip, 
+    Button,
+    Grid,
+    FormControlLabel,
+    TextField,
+    RadioGroup,
+    FormLabel,
+    FormControl,
+    Radio
+} from '@material-ui/core'
+import {sortByLatest,filterByDate} from '../../redux/filter/actions';
+import { tsConditionalType } from '@babel/types';
 
 const styles = (theme: Theme) => createStyles({
     root: {
@@ -28,19 +36,36 @@ const styles = (theme: Theme) => createStyles({
     chip: {
      margin: theme.spacing(1),
     },
-    });
+    time: {
+        marginTop: theme.spacing(3),
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+    },
+    latest: {
+        paddingBottom: theme.spacing(3),
+    },
+    formControl : {
+        marginTop: theme.spacing(3),
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(15)
+    }
+});
 
 interface FilterPanelProps {
     classes: any,
-    onSort: () => void,
-    onChangeDisplay: (value : any) => void
-}
+    sortByLatest: typeof sortByLatest,
+    filterByDate: typeof filterByDate
+};
 
 interface FilterPanelState {
     anchorEl: Element | null,
-    chipClicked: boolean
+    chipClicked: boolean,
+    sort: boolean,
+    filter: {
+        filterOption: string | undefined,
+        filterDate: string,
+    }
 }
-
 
 class FilterPanel extends React.Component <FilterPanelProps, FilterPanelState>{
 
@@ -49,30 +74,55 @@ class FilterPanel extends React.Component <FilterPanelProps, FilterPanelState>{
         this.state = {
             anchorEl: null,
             chipClicked: false,
+            sort: false,
+            filter: {
+                filterOption: undefined,
+                filterDate: moment().format("YYYY-MM-DD"),
+            }
         }
         this.handleChipClick = this.handleChipClick.bind(this);
-        this.handleMenuClick = this.handleMenuClick.bind(this);
-        this.handleMenuOpen = this.handleMenuOpen.bind(this);
-        this.handleMenuClose = this.handleMenuClose.bind(this);
+        this.handleRadioChange = this.handleRadioChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChipClick(event: React.MouseEvent) {
-        this.props.onSort();
+        this.props.sortByLatest();
     }
 
-    handleMenuClick(event: React.MouseEvent) {
-        console.log(event.target)
-        //this.props.onChangeDisplay(event)
-        this.handleMenuClose();
+    handleSubmit() {
+        if (!this.state.sort && !this.state.filter) {
+            alert('No filter has been applied.')
+        } else {
+            if (this.state.sort) {
+                this.props.sortByLatest();
+            }
+            if (this.state.filter.filterOption) {
+                const filter = {
+                    filterOption: this.state.filter.filterOption,
+                    filterDate: moment(this.state.filter.filterDate, 'YYYY-MM-DD')
+                }
+                this.props.filterByDate(filter)
+            }
+        }
     }
 
-    handleMenuOpen(event : React.MouseEvent) {
-        this.setState({anchorEl: event.currentTarget})
+    handleRadioChange(e: React.ChangeEvent<{}>) {
+        const target = e.target as HTMLInputElement;
+        if (target) {
+            const obj = this.state.filter;
+            obj.filterOption = target.value;
+            this.setState({filter: obj});
+        }
     }
 
-    handleMenuClose() {
-        this.setState({anchorEl: null})
-    }
+    handleDateChange(e : React.ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>) {
+        const filter = this.state.filter;
+        filter.filterDate = e.target.value;
+        if (e.target !== null) {
+            this.setState({filter: filter});
+        }
+    };
     
     render() {
 
@@ -87,31 +137,49 @@ class FilterPanel extends React.Component <FilterPanelProps, FilterPanelState>{
                     <Typography className={this.props.classes.heading}>Filter</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <List component="nav">
-                            <ListItem>
-                            <Chip
-                                label="LATEST"
-                                className={this.props.classes.chip}
-                                onClick={this.handleChipClick}
-                            />
-                            </ListItem>
+                        <form>
+                            <Grid item xs={6}>
+                                <Chip
+                                    label="LATEST"
+                                    className={this.props.classes.chip}
+                                    onClick={this.handleChipClick}
+                                />
+                            </Grid>
 
-                            <ListItem>
-                            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleMenuOpen}>
-                                Open Menu
-                            </Button>
-                            <Menu
-                                id="simple-menu"
-                                anchorEl={this.state.anchorEl}
-                                keepMounted
-                                open={Boolean(this.state.anchorEl)}
-                                onClose={this.handleMenuClose}
-                            >
-                                <MenuItem onClick={this.handleMenuClick}>Profile</MenuItem>
-                                <MenuItem onClick={this.handleMenuClick}>My account</MenuItem>
-                            </Menu>
-                            </ListItem>
-                        </List>
+                            <Grid item xs={12}>
+                                <FormControl component="fieldset" className={this.props.classes.formControl}>
+                                    <FormLabel component="legend">Filter By</FormLabel>
+                                    <RadioGroup
+                                        aria-label="filter"
+                                        name="filter"
+                                        className={this.props.classes.group}
+                                        value={this.state.filter.filterOption}
+                                        onChange={this.handleRadioChange}
+                                    >
+                                    <FormControlLabel value="before" control={<Radio />} label="Before" />
+                                    <FormControlLabel value="after" control={<Radio />} label="After" />
+                                    </RadioGroup>
+                                </FormControl>
+
+                                <TextField
+                                    id="date"
+                                    label="Date"
+                                    type="date"
+                                    defaultValue={moment().format("YYYY-MM-DD")}
+                                    onChange={(e) => this.handleDateChange(e)}
+                                    className={this.props.classes.time}
+                                    InputLabelProps={{
+                                    shrink: true,
+                                    }}
+                                />   
+                                   
+                            </Grid>
+                            <Button onClick={this.handleSubmit}>
+                                Apply Filter
+                            </Button>    
+                            
+                        </form>
+                    
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>
@@ -120,11 +188,4 @@ class FilterPanel extends React.Component <FilterPanelProps, FilterPanelState>{
     
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        onSort: () => dispatch({type: SORT}),
-        onChangeDisplay: (element: Element) => dispatch({type: CHANGE_DISPLAY}),
-    }
-}
-
-export default withStyles(styles)(connect(null, mapDispatchToProps)(FilterPanel));
+export default withStyles(styles)(connect(null, {sortByLatest, filterByDate})(FilterPanel));
