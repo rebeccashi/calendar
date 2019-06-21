@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
       textAlign: 'center',
       height: 800,
       fontSize: 20
-    },
-    title: {
-        padding: 10
     }
   }));
 
@@ -27,9 +24,7 @@ export default function ListComponent() {
                 aria-labelledby="nested-list-subheader"
                 className={classes.root}
                 >
-                <Typography variant="h5" className={classes.title}>
-                    To-Do List
-                </Typography>
+                
                 <EventList/>
             </List>
     )

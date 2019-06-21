@@ -9,11 +9,16 @@ import {makeStyles, createStyles} from '@material-ui/core/styles';
 import {Theme} from '@material-ui/core';
 import {MuiPickersUtilsProvider,} from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
+import Filter from './components/Filter/Filter'
+import Title from './components/Title/Title'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
+  list: {
+    width: '90%'
+  }
 }));
 
 
@@ -22,10 +27,12 @@ const App: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <div className="classes.root">
+    <div className={classes.root}>
       <Grid container spacing = {3}>
         <Grid item xs={9}>
-          <ListComponent/>
+            <Title/>
+            <Filter/>
+            <ListComponent/>
         </Grid>
         <Grid item xs={3}>
           <CreateEvent/>

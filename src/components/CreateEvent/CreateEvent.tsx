@@ -12,7 +12,7 @@ import EventCard from './EventCard';
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
         flexGrow: 1,
-        marginRight: theme.spacing(20)
+        marginRight: theme.spacing(20),
     },
     button: {
       margin: theme.spacing(1),
