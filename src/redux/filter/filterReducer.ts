@@ -1,7 +1,5 @@
-import {
-    FilterState,
-    FilterActionTypes
-} from './filterTypes'
+import {FilterState, latestAction, dateAction} from './filterTypes'
+import {reducerWithInitialState} from 'typescript-fsa-reducers';
 
 const initialState: FilterState = {
     display: 'SHOW_ALL',
@@ -9,26 +7,17 @@ const initialState: FilterState = {
     filterObject: null
 };
 
-export function filterReducer (
-    state = initialState,
-    action: FilterActionTypes
-) : FilterState {
-    
-    switch(action.type) {
-        case 'LATEST':
-            return {
-                ...state,
-                latest: true,
-            };
-        case 'DATE':
-            return {
-                ...state,
-                filterObject: {
-                    filterOption: action.payload.filterOption,
-                    filterDate: action.payload.filterDate
-                }
+export const filterReducer = reducerWithInitialState(initialState)
+    .case(latestAction, (state) => ({
+            ...state,
+            latest: true
+        }
+    )) 
+    .case(dateAction, (state, payload) => ({
+            ...state,
+            filterObject: {
+                filterOption: payload.filterOption,
+                filterDate: payload.filterDate
             }
-        default: 
-            return state;
-    }
-}
+        }
+    ))

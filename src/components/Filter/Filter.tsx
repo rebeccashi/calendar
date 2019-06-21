@@ -2,7 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 import {connect} from 'react-redux';
 import {withStyles, createStyles} from '@material-ui/core/styles';
-import {FilterState, FilterActionTypes} from '../../redux/filter/filterTypes'
 import moment from 'moment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
