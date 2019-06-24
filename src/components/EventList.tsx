@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import EventItem from './EventItem'
-import {Event, CalendarState} from '../redux/calendar/calendarTypes'
+import {Event} from '../redux/calendar/calendarTypes'
 import {addMusicEvents} from '../redux/calendar/calendarActions'
 import { getDisplayEvents, getMusicEvents } from '../redux/selector';
 import { RootState } from '..';
 import axios from 'axios';
 import {geolocated, GeolocatedProps} from 'react-geolocated';
-
+import moment from 'moment';
 
 interface ListProps {
     events: Event[],
@@ -28,8 +28,19 @@ class EventList extends Component<ListProps, GeolocatedProps> {
             }
         })
         .then(response => {
-            //console.log(response.data._embedded.events)
-            this.props.addMusicEvents(response.data._embedded.events)
+            let events :any[] = [];
+            response.data._embedded.events.map((e : any) => {
+                const event: Event = {
+                    name: e.name,
+                    id: e.id,
+                    date: moment(e.dates.start.localDate),
+                    startTime: moment(e.dates.start.localTime.slice(0, 5), 'HH:mm'),
+                    endTime: moment(e.dates.start.localTime, 'HH:mm').add(3, "hours"),
+                    username: 'Ticket Master'
+                };
+                events.push(event);
+            })
+            this.props.addMusicEvents(events);
         })
     }
 
@@ -71,5 +82,7 @@ const mapStateToProps = (state : RootState)  => {
         musicEvents: getMusicEvents(state)
     }
 };
+
+
 
 export default connect(mapStateToProps, {addMusicEvents})(EventList);

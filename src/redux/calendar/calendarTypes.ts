@@ -23,7 +23,7 @@ export const ADD_MUSIC_EVENTS = 'ADD_MUSIC_EVENTS';
 const actionCreator = actionCreatorFactory();
 export const addEventAction = actionCreator<Event>(ADD_EVENT);
 export const addMusicEventsAction = 
-    actionCreator<[]>(ADD_MUSIC_EVENTS);
+    actionCreator<Event[]>(ADD_MUSIC_EVENTS);
 /*
 export interface addEventAction {
     type: typeof ADD_EVENT,

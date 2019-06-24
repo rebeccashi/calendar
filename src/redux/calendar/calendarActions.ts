@@ -7,7 +7,7 @@ export function addEvent(event: Event) {
     }
 };
 
-export function addMusicEvents(arr: []) {
+export function addMusicEvents(arr: Event[]) {
     return {
         type: ADD_MUSIC_EVENTS,
         payload: arr,
