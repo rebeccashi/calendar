@@ -1,6 +1,6 @@
 import React from 'react';
-import EventList from './components/EventList';
-import ListComponent from './components/ListComponent';
+import EventList from './components/List/EventList';
+import ListComponent from './components/List/ListComponent';
 import * as styles from './App.css';
 import CreateEvent from './components/CreateEvent/CreateEvent';
 import Grid from '@material-ui/core/Grid';

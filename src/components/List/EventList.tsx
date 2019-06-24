@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import EventItem from './EventItem'
-import {Event} from '../redux/calendar/calendarTypes'
-import {addMusicEvents} from '../redux/calendar/calendarActions'
-import { getDisplayEvents, getMusicEvents } from '../redux/selector';
-import { RootState } from '..';
+import EventItem from '../ListItem/EventItem'
+import {Event} from '../../redux/calendar/calendarTypes'
+import {addMusicEvents} from '../../redux/calendar/calendarActions'
+import { getDisplayEvents, getMusicEvents } from '../../redux/selector';
+import { RootState } from '../..';
 import axios from 'axios';
 import {geolocated, GeolocatedProps} from 'react-geolocated';
 import moment from 'moment';
-import MusicItem from './MusicItem';
+import MusicItem from '../ListItem/MusicItem';
 
 interface ListProps {
     events: Event[],
@@ -72,7 +72,7 @@ class EventList extends Component<ListProps, GeolocatedProps> {
             />
         ));
 
-        const allEvents = [...musicEvents, ...customEvents];
+        const allEvents = [...customEvents, ...musicEvents];
         return allEvents;
     }
 };
