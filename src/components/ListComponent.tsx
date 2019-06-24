@@ -8,10 +8,10 @@ import Typography from '@material-ui/core/Typography'
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
       maxWidth: '80%',
-      backgroundColor: theme.palette.background.paper,
       textAlign: 'center',
       height: 800,
-      fontSize: 20
+      fontSize: 20,
+      marginLeft: '10%'
     }
   }));
 

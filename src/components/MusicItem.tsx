@@ -8,9 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import {Theme} from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider'
-import moment from 'moment'
 
-interface EventItemProps {
+interface MusicItemProps {
     name: string,
     date: string,
     startTime: string,
@@ -27,16 +26,17 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
         width: '100%',
         paddingLeft: '15%',
-        backgroundColor: '#e8eff2'
+        backgroundColor:'#cff7f7',
+        marginBottom: 10,
       },
     text: {
         paddingLeft: '15%'
     }
 }));
 
-const EventItem = ({
+const MusicItem = ({
     name, date, startTime, endTime, location, notes, username, id, index, style
-} :EventItemProps) => {
+} :MusicItemProps) => {
     const [checked, setChecked] = React.useState(-1);
 
     const handleCheck = () => {
@@ -70,7 +70,7 @@ const EventItem = ({
                     secondary={
                         <React.Fragment>
                             <Typography variant="subtitle2" gutterBottom>
-                                User: {username}
+                                Event Source: {username}
                             </Typography>
                             <Typography
                                 variant="body1">
@@ -102,4 +102,4 @@ const EventItem = ({
     )
 };
 
-export default EventItem;
+export default MusicItem;

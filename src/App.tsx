@@ -14,10 +14,11 @@ import Title from './components/Title/Title'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginTop: 20
   },
   list: {
-    width: '90%'
+    //width: '90%'
   }
 }));
 
