@@ -3,8 +3,17 @@ import {Event} from './calendar/calendarTypes';
 import { RootState } from '..';
 import moment from 'moment';
 
-const getEvents = (state: RootState) => state.calendar.events
+const getEvents = (state: RootState) => state.calendar.events;
+const getMusic = (state: RootState) => state.calendar.musicEvents;
 const getFilter = (state : RootState) => state.filter;
+
+export const getMusicEvents = createSelector(
+    [getMusic],
+    (events)
+    :Event[] => {
+        return events;
+    }
+)
 
 export const getDisplayEvents = createSelector(
     [getEvents, getFilter],

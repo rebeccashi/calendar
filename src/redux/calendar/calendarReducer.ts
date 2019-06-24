@@ -1,6 +1,6 @@
 import {
     CalendarState,
-    ADD_EVENT,
+    Event,
     addEventAction, 
     addMusicEventsAction
 } from './calendarTypes';
@@ -53,21 +53,24 @@ export const calendarReducer = reducerWithInitialState(initialState)
     .case(addEventAction, (state, payload) => ({
         ...state,
         events: [...state.events, payload],
+    }))
+    .case(addMusicEventsAction, (state, payload) => {
+        const array: Event[] = [];
+        payload.map((e : any) => {
+            const event: Event = {
+                name: e.name,
+                id: e.id,
+                date: moment(e.dates.start.localDate),
+                startTime: moment(e.dates.start.localTime.slice(0, 5), 'HH:mm'),
+                endTime: moment(e.dates.start.localTime, 'HH:mm').add(3, "hours"),
+                username: 'Ticket Master'
+            };
+            console.log(event);
+            array.push(event);
+        })
+        return {
+            ...state,
+            musicEvents: array
+        }
     })
-)
-
-/*
-export function calendarReducer(state = initialState, action: any) : CalendarState {
-    switch(action.type) {
-        case ADD_EVENT:
-            return {
-                ...state,
-                events: [...state.events, action.payload],
-            }
-    }
-
-    return state;
-};
-
-export default calendarReducer;
-*/
+;
