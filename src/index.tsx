@@ -9,6 +9,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './index.d.ts'
 
+// require('dotenv').config();
+// console.log('-->', process.env.API_KEY);
+
 const rootReducer = combineReducers({
     calendar: calendarReducer,
     filter: filterReducer

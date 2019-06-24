@@ -1,4 +1,5 @@
-import moment, { MomentBuiltinFormat } from 'moment';
+import moment from 'moment';
+import actionCreatorFactory from 'typescript-fsa';
 
 export interface Event {
     name: string,
@@ -12,12 +13,19 @@ export interface Event {
 };
 
 export interface CalendarState {
-    events: Event[]
+    events: Event[],
+    musicEvents: Event[]
 }
 
 export const ADD_EVENT = 'ADD_EVENT';
+export const ADD_MUSIC_EVENTS = 'ADD_MUSIC_EVENTS';
 
+const actionCreator = actionCreatorFactory();
+export const addEventAction = actionCreator<Event>(ADD_EVENT);
+export const addMusicEventsAction = actionCreator<[]>(ADD_MUSIC_EVENTS);
+/*
 export interface addEventAction {
     type: typeof ADD_EVENT,
     payload: Event
 }
+*/

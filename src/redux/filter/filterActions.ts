@@ -7,7 +7,6 @@ export function sortByLatest() {
 }
 
 export function filterByDate(filter : FilterObject) {
-    console.log('action is dispatched')
     return {
         type: DATE,
         payload: filter

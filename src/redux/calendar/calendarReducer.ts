@@ -1,8 +1,11 @@
 import {
     CalendarState,
-    ADD_EVENT
+    ADD_EVENT,
+    addEventAction, 
+    addMusicEventsAction
 } from './calendarTypes';
 import moment from 'moment';
+import {reducerWithInitialState} from 'typescript-fsa-reducers';
 
 const initialState : CalendarState = {
     events: [
@@ -42,9 +45,18 @@ const initialState : CalendarState = {
             username: "Rebecca", 
             id: "Rebecca-2019/6/11-Go the gym" 
         },
-    ]
+    ],
+    musicEvents: [],
 };
 
+export const calendarReducer = reducerWithInitialState(initialState)
+    .case(addEventAction, (state, payload) => ({
+        ...state,
+        events: [...state.events, payload],
+    })
+)
+
+/*
 export function calendarReducer(state = initialState, action: any) : CalendarState {
     switch(action.type) {
         case ADD_EVENT:
@@ -58,3 +70,4 @@ export function calendarReducer(state = initialState, action: any) : CalendarSta
 };
 
 export default calendarReducer;
+*/

@@ -20,7 +20,7 @@ import {
     FormControl,
     Radio
 } from '@material-ui/core'
-import {sortByLatest,filterByDate} from '../../redux/filter/actions';
+import {sortByLatest,filterByDate} from '../../redux/filter/filterActions';
 import { tsConditionalType } from '@babel/types';
 
 const styles = (theme: Theme) => createStyles({
