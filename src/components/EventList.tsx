@@ -8,6 +8,7 @@ import { RootState } from '..';
 import axios from 'axios';
 import {geolocated, GeolocatedProps} from 'react-geolocated';
 import moment from 'moment';
+import MusicItem from './MusicItem';
 
 interface ListProps {
     events: Event[],
@@ -46,7 +47,7 @@ class EventList extends Component<ListProps, GeolocatedProps> {
 
     render() {
         const musicEvents = this.props.musicEvents.map((e : Event) => (
-            <EventItem
+            <MusicItem
                 id={e.name}
                 name = {e.name}
                 date={e.date.format('MM-DD-YYYY')}
