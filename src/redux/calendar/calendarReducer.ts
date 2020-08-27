@@ -2,7 +2,6 @@ import {
     CalendarState,
     Event,
     addEventAction, 
-    addMusicEventsAction
 } from './calendarTypes';
 import moment from 'moment';
 import {reducerWithInitialState} from 'typescript-fsa-reducers';
@@ -53,11 +52,4 @@ export const calendarReducer = reducerWithInitialState(initialState)
     .case(addEventAction, (state, payload) => ({
         ...state,
         events: [...state.events, payload],
-    }))
-    .case(addMusicEventsAction, (state, payload) => {
-        return {
-            ...state,
-            musicEvents: payload
-        }
-    })
-;
+    }));
