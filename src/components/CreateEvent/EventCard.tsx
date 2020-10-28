@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {CalendarState, ADD_EVENT, Event, addEventAction} from '../../redux/calendar/calendarTypes';
-
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';

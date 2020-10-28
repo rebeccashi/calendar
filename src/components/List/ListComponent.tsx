@@ -3,7 +3,6 @@ import {Theme} from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import EventList from './EventList'
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {

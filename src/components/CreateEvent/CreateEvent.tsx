@@ -3,10 +3,8 @@ import Button from '@material-ui/core/Button';
 import {makeStyles, createStyles} from '@material-ui/core/styles';
 import {Theme} from '@material-ui/core'
 import Popper, { PopperProps, PopperPlacementType } from '@material-ui/core/Popper'
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid';
 import Fade from '@material-ui/core/Fade'
-import Paper from '@material-ui/core/Paper';
 import EventCard from './EventCard';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
