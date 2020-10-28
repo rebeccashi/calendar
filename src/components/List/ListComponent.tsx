@@ -24,11 +24,9 @@ export default function ListComponent() {
                 aria-labelledby="nested-list-subheader"
                 className={classes.root}
                 >
-                
                 <EventList/>
             </List>
     )
-
     
 }
 

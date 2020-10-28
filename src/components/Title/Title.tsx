@@ -17,7 +17,7 @@ export default function Title () {
 
   return (
         <Typography variant="h5" className={classes.title}>
-                        To-Do List
+            To-Do List
         </Typography>
     )
 };

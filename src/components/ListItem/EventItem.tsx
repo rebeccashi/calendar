@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -8,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import {Theme} from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider'
-import moment from 'moment'
 
 interface EventItemProps {
     name: string,

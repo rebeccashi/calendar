@@ -1,14 +1,10 @@
 import React from 'react';
-import EventList from './components/List/EventList';
 import ListComponent from './components/List/ListComponent';
 import * as styles from './App.css';
 import CreateEvent from './components/CreateEvent/CreateEvent';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import {makeStyles, createStyles} from '@material-ui/core/styles';
 import {Theme} from '@material-ui/core';
-import {MuiPickersUtilsProvider,} from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
 import Filter from './components/Filter/Filter'
 import Title from './components/Title/Title'
 
@@ -17,9 +13,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     flexGrow: 1,
     marginTop: 20
   },
-  list: {
-    //width: '90%'
-  }
 }));
 
 
