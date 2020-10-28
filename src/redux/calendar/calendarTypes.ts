@@ -13,17 +13,13 @@ export interface Event {
 };
 
 export interface CalendarState {
-    events: Event[],
-    musicEvents: Event[]
+    events: Event[]
 }
 
 export const ADD_EVENT = 'ADD_EVENT';
-export const ADD_MUSIC_EVENTS = 'ADD_MUSIC_EVENTS';
 
 const actionCreator = actionCreatorFactory();
 export const addEventAction = actionCreator<Event>(ADD_EVENT);
-export const addMusicEventsAction = 
-    actionCreator<Event[]>(ADD_MUSIC_EVENTS);
 
 export interface addEventAction {
     type: typeof ADD_EVENT,

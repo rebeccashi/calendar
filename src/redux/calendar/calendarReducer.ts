@@ -1,6 +1,5 @@
 import {
     CalendarState,
-    Event,
     addEventAction, 
 } from './calendarTypes';
 import moment from 'moment';
@@ -45,7 +44,6 @@ const initialState : CalendarState = {
             id: "Rebecca-2019/6/11-Go the gym" 
         },
     ],
-    musicEvents: [],
 };
 
 export const calendarReducer = reducerWithInitialState(initialState)
